@@ -1,0 +1,12 @@
+function reload {
+  CURDIR=$PWD
+  cd ~ 
+  source .bash_login
+  cd $CURDIR
+}
+function ref {
+  ref-create $1 $2 &&
+  reload &&
+  $2
+}
+source .redirects
