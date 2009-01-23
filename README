@@ -1,0 +1,16 @@
+usage:
+
+: ref ~ home
+: home # => changes to home
+: ref /var/log/apache2 a2log
+: a2log # => changes to /var/log/apache2
+
+etc.
+
+: ref-list
+# outputs
+home
+a2log
+
+and also
+: ref-del home # => this one was pointless anyway
