@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'fileutils'
+
+newlines = File.new("#{ENV['HOME']}/.redirects", 'r+').each do |line|
+  puts line.match(/alias (.*)=/)[1]
+end

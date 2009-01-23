@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'fileutils'
+
+path = ARGV[0]
+name = ARGV[1]
+
+if path.nil?
+  puts 'nil filename'
+  exit 1
+elsif !File.exists? path
+  puts 'file not found'
+  exit 1
+end
+
+fullpath = Pathname.new(path).realpath
+
+if name.nil?
+  name = fullpath.basename
+end
+
+File.open("#{ENV['HOME']}/.redirects", 'a') do |file|
+  file << "alias #{name}=\"cd #{fullpath}\"\n"
+end
+
+exit 0

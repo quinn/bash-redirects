@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'fileutils'
+
+name = ARGV[0]
+
+newlines = File.new("#{ENV['HOME']}/.redirects", 'r+').readlines.reject! do |line|
+  line.match /alias #{ARGV[0]}=/
+end
+
+if newlines.nil?
+  puts 'redirect not found'
+  exit 1
+end
+
+File.open("#{ENV['HOME']}/.redirects", 'w') do |file|
+  file << newlines.join
+end
